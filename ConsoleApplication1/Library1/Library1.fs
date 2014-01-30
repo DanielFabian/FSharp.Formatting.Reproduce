@@ -1,7 +1,11 @@
 ﻿module Library1
 
-type Alias = Dummy.OriginalType
-let myFunc = Alias.DUCase
+type Marker = class end
 
-type Class1() = 
-    member this.X = "F#"
+[<EntryPoint>]
+let main args =
+    printfn "%A" args
+//    failwith "omg"
+    let rec killMyself x = killMyself x
+    killMyself 1
+    0

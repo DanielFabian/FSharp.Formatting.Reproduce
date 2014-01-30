@@ -1,3 +1,11 @@
-﻿module Dummy
+﻿module AppDomainCrash
+open System
+open System.Reflection
 
-type OriginalType = DUCase
+let runDomain i =
+    let domain = AppDomain.CreateDomain(i.ToString())
+    let assembly = typeof<Library1.Marker>.Assembly  
+      
+    domain.ExecuteAssemblyByName(assembly.FullName, i.ToString())
+
+[|1..100000|] |> Array.map runDomain
